@@ -1,0 +1,51 @@
+form{
+    display:block;
+    justify-content: center;
+    align-items: center;
+    width:500px;
+    margin: 450px 450px;
+    margin-top: 200px;
+}
+
+.formulario registro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -380%;
+    left: -200%;
+    transform: translate(-49%, -49%);
+
+}
+
+
+form label, form legend{
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+
+
+.input-padron{
+    display: block;
+    margin:0 0 20px;
+    padding: 10px 25px;
+    width: 50%;
+}
+.enviar{
+    width: 40%;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background:blue;
+    border: none;
+    border-radius: 5px;
+    transition: 1s all;
+    cursor: pointer;
+}
+
+.enviar:hover{
+    background:darkblue;
+    transform: scale(1.3);
+}
