@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Usuarios</title>
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="style2.css">
-        <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-        </script>
-        <script type="text/javascript">
-           (function(){
-              emailjs.init({
-                publicKey: "pzsbyVW3CzY025zFB",
-              });
-           })();
-        </script>
-    </head>
-    <body>
-        <header>
-            <div class="caja"> 
-                <h1 class="Park"><img src="Imagenes/ParkEasy.png"></h1>
-                <nav>
-                   <ul>
-                       <li><a href="Usuarios.html">Usuarios</a></li>
-                       <li><a href="Vehiculos.html">Vehiculos</a></li>
-                       <li><a href="Reservas.html">Reversas</a></li>
-                       <li><a href="Estacionamiento.html">Estacionamiento</a></li>
-                       <li><a href="Pagos.html">Pagos</a></li>
-                   </ul>
-               </nav>
-           </div>
-        </header> 
-        <main class="formulario registro">
-            <form>
-            <label for="Nombre">Nombre</label>
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <div class="caja"> 
+            <h1 class="Park"><img src="Imagenes/ParkEasy.png"></h1>
+            <nav>
+                <ul>
+                    <li><a href="Usuarios.html">Usuarios</a></li>
+                    <li><a href="Vehiculos.html">Vehiculos</a></li>
+                    <li><a href="Reservas.html">Reversas</a></li>
+                    <li><a href="Estacionamiento.html">Estacionamiento</a></li>
+                    <li><a href="Pagos.html">Pagos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header> 
+    <main class="formulario registro">
+        <form>
+            <label for="NombreApellido">Nombre</label>
             <input type="text" id="NombreApellido" class="input-padron" required>
 
             <label for="Apellido">Apellido</label>
@@ -44,9 +34,52 @@
             <input type="email" id="CorreoElectronico" class="input-padron" required placeholder="email@dominio.com">
 
             <label for="Contraseña">Contraseña</label>
-            <input type="password" id="Constraseña" class="input-padron" required>
-            <button type="submit" class="enviar">Enviar</button>
+            <input type="password" id="Contraseña" class="input-padron" required>
+            <button type="submit" id="signUp" class="enviar">Registrarse</button>
         </form>
     </main>
-    </body>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> 
+    <script type="module">
+        // Inicializa Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDlyVyIKR_gl45uhihw0GVQBgD2KE_vf34",
+            authDomain: "parkeasy-ec88b.firebaseapp.com",
+            databaseURL: "https://parkeasy-ec88b-default-rtdb.firebaseio.com",
+            projectId: "parkeasy-ec88b",
+            storageBucket: "parkeasy-ec88b.appspot.com",
+            messagingSenderId: "953201477242",
+            appId: "1:953201477242:web:42f23d2bf25dc6ded05dc3"
+        };
+
+        // Inicializa Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const signUp = document.getElementById('signUp');
+            signUp.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                var CorreoElectronico = document.getElementById('CorreoElectronico').value;
+                var Contraseña = document.getElementById('Contraseña').value;
+                var Nombre = document.getElementById('NombreApellido').value;
+                var Apellido = document.getElementById('Apellido').value;
+
+                firebase.auth().createUserWithEmailAndPassword(CorreoElectronico, Contraseña)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        alert('Usuario creado!');
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+
+                        alert(errorMessage);
+                    });
+            });
+        });
+    </script>
+</body>
 </html>
