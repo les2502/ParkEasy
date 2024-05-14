@@ -1,7 +1,11 @@
 // Iniciar Sesión
 var provider = new firebase.auth.GoogleAuthProvider();
 
-$('root')
-firebase.auth()
-  .signInWithPopup(provider)
-  .then((result) => {
+$('#login').click(function(){
+  firebase.auth()
+    .signInWithPopup(provider)
+    .then(function(result){
+      console.log(result.usuario);
+    });
+});
+
