@@ -5,7 +5,7 @@ $('#login').click(function(){
   firebase.auth()
     .signInWithPopup(provider)
     .then(function(result){
-      console.log(result.usuario);
+        console.log(result.user);
     });
 });
 
